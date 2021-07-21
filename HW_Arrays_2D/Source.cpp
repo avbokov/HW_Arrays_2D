@@ -9,10 +9,11 @@ using std::endl;
 
 #define tab "\t"
 
-#define TASK_1_2
+//#define TASK_1_2
 //#define TASK_3_1D_TO_2D
 //#define TASK_3_ANOTHER_WAY
 //#define TASK_4
+#define TASK_5
 
 void main()
 {
@@ -20,8 +21,8 @@ void main()
 
 	srand(time(NULL));
 
-	const int ROWS = 8;
-	const int COLS = 5;
+	const int ROWS = 5;
+	const int COLS = 8;
 
 	int arr[ROWS][COLS];
 	int minRand, maxRand;
@@ -48,7 +49,7 @@ void main()
 				max = arr[i][j];
 			}
 
-			if (arr[i][j] <= min)
+			if (arr[i][j] < min)
 			{
 				min = arr[i][j];
 			}
@@ -270,5 +271,91 @@ void main()
 		}
 	}
 #endif // TASK_4
+
+#ifdef TASK_5
+	const int ROWS1 = 3;
+	const int COLS1 = 3;
+
+	int arr1[ROWS1][COLS1];
+	int arr2[ROWS1][COLS1];
+	int arr_composition[ROWS1][COLS1] = {};
+
+	cout << endl;
+
+	for (int i = 0; i < ROWS1; i++)
+	{
+		for (int j = 0; j < COLS1; j++)
+		{
+			arr1[i][j] = rand() % (maxRand - minRand) + minRand;
+			arr2[i][j] = rand() % (maxRand - minRand) + minRand;
+		}
+	}
+
+	cout << "Матрица 1" << endl << endl;
+
+	for (int i = 0; i < ROWS1; i++)
+	{
+		for (int j = 0; j < COLS1; j++)
+		{
+			cout << arr1[i][j] << tab;
+		}
+		cout << endl;
+	}
+
+	cout << endl;
+	cout << "Матрица 2" << endl << endl;
+
+	for (int i = 0; i < ROWS1; i++)
+	{
+		for (int j = 0; j < COLS1; j++)
+		{
+			cout << arr2[i][j] << tab;
+		}
+		cout << endl;
+	}
+
+	cout << endl;
+	cout << "Сумма матрицы 1 и матрицы 2" << endl << endl;
+
+	for (int i = 0; i < ROWS1; i++)
+	{
+		for (int j = 0; j < COLS1; j++)
+		{
+			cout << arr1[i][j] + arr2[i][j] << tab;
+		}
+		cout << endl;
+	}
+
+	int result_composition = 0;
+
+	for (int k = 0; k < ROWS1; k++)
+	{
+		for (int l = 0; l < COLS1; l++)
+		{
+			for (int j = 0; j < COLS1; j++)
+			{
+				result_composition = result_composition + arr1[k][j] * arr2[j][l];
+			}
+			arr_composition[k][l] = result_composition;
+			result_composition = 0;
+		}
+	}
+
+	cout << endl;
+	cout << "Перемножение матрицы 1 и матрицы 2" << endl << endl;
+
+	for (int i = 0; i < ROWS1; i++)
+	{
+		for (int j = 0; j < COLS1; j++)
+		{
+			cout << arr_composition[i][j] << tab;
+		}
+		cout << endl;
+	}
+#endif // TASK_5
+
+
+
+
 
 }
